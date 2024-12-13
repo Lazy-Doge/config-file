@@ -122,7 +122,9 @@ alias git-simplelog="git log --pretty=oneline --all --graph --abbrev-commit"
 
 
 # 添加http/https代理, apt代理, git代理
-
-export http_proxy="http://192.168.10.4:7891"
-export https_proxy="https://192.168.10.4:7891"
+# 代理定位到wsl网关,wsl网关流量会交给win主机转发
+export http_proxy="http://$(ip route | grep default | awk '{print $3}'):7891"
+export https_proxy="https://$(ip route | grep default | awk '{print $3}'):7891"
+# export http_proxy="http://192.168.10.4:7891"
+# export https_proxy="https://192.168.10.4:7891"
 export GOPATH=/home/ubuntu_chen/go
